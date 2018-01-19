@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <Toolbar id="baz" />
     <Editor id="foo" />
     <Editor id="bar" />
   </div>
@@ -7,11 +8,13 @@
 
 <script>
 import Editor from './components/Editor';
+import Toolbar from './components/Toolbar';
 
 export default {
   name: 'App',
   components: {
     Editor,
+    Toolbar,
   },
 };
 </script>
@@ -23,12 +26,11 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
   width: 600px;
   margin: 60px auto 0;
 }
 
-#foo, #bar {
+#foo, #bar, #baz {
   margin: 0 auto 30px;
 }
 </style>
