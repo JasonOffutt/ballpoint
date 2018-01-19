@@ -33,7 +33,6 @@ export default {
   methods: {
     initEditor() {
       this.editor = new Quill(this.$refs.editorContainer);
-
       this.editor.on('selection-change', () => this.handleSelection());
     },
 
@@ -44,19 +43,19 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-  .editor {
-    height: 150px;
-    border: 1px solid #dfe0e3;
-    border-radius: 4px;
+<style lang="scss">
+.editor {
+  height: 150px;
+  border: 1px solid #dfe0e3;
+  border-radius: 4px;
 
-    &.focus {
-      border: transparent;
-      box-shadow: 0 0 0 0.125rem #58a1d8;
-    }
+  &.focus {
+    border: transparent;
+    box-shadow: 0 0 0 0.125rem #58a1d8;
   }
+}
 
-  .ql-toolbar {
-    display: none;
-  }
+.ql-toolbar {
+  display: none;
+}
 </style>

@@ -1,6 +1,7 @@
 <template>
   <div id="app">
-    <Editor id="foobar" />
+    <Editor id="foo" />
+    <Editor id="bar" />
   </div>
 </template>
 
@@ -25,5 +26,9 @@ export default {
   margin-top: 60px;
   width: 600px;
   margin: 60px auto 0;
+}
+
+#foo, #bar {
+  margin: 0 auto 30px;
 }
 </style>
