@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Toolbar id="baz" />
-    <Editor id="foo" />
+    <Editor id="foo" :content="content" />
     <Editor id="bar" />
   </div>
 </template>
@@ -12,9 +12,16 @@ import Toolbar from './components/Toolbar';
 
 export default {
   name: 'App',
+
   components: {
     Editor,
     Toolbar,
+  },
+
+  data() {
+    return {
+      content: '<p>Hello <strong>World</strong></p>',
+    };
   },
 };
 </script>

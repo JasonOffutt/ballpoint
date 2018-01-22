@@ -24,6 +24,7 @@ export default {
 
   props: {
     id: String,
+    content: String,
   },
 
   mounted() {
@@ -33,11 +34,18 @@ export default {
   methods: {
     initEditor() {
       this.editor = new Quill(this.$refs.editorContainer);
+      this.setContent(this.content);
       this.editor.on('selection-change', () => this.handleSelection());
     },
 
     handleSelection() {
       this.hasFocus = this.editor.hasFocus();
+    },
+
+    setContent(content) {
+      if (content) {
+        this.editor.clipboard.dangerouslyPasteHTML(this.content);
+      }
     },
   },
 };
