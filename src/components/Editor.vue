@@ -33,8 +33,8 @@ export default {
 
   methods: {
     initEditor() {
-      this.editor = new Quill(this.$refs.editorContainer);
       this.setContent(this.content);
+      this.editor = new Quill(this.$refs.editorContainer);
       this.editor.on('selection-change', () => this.handleSelection());
     },
 
@@ -48,7 +48,7 @@ export default {
 
     setContent(content) {
       if (content) {
-        this.editor.clipboard.dangerouslyPasteHTML(this.content);
+        this.$refs.editorContainer.innerHTML = content;
       }
     },
   },
