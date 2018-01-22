@@ -39,7 +39,11 @@ export default {
     },
 
     handleSelection() {
-      this.hasFocus = this.editor.hasFocus();
+      const hasFocus = this.editor.hasFocus();
+      const eventName = hasFocus ? 'editor:focus' : 'editor:blur';
+
+      this.hasFocus = hasFocus;
+      this.$emit(eventName, { id: this.id, editor: this.editor });
     },
 
     setContent(content) {

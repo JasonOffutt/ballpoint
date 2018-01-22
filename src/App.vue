@@ -1,8 +1,15 @@
 <template>
   <div id="app">
-    <Toolbar id="baz" />
-    <Editor id="foo" :content="content" />
-    <Editor id="bar" />
+    <toolbar :active-editor="activeEditor" />
+
+    <div v-for="(block, index) in blocks" :key="index">
+      <editor
+        :id="block.id"
+        :content="block.content"
+        @editor:focus="setEditor"
+        @editor:blur="clearEditor"
+      />
+    </div>
   </div>
 </template>
 
@@ -20,8 +27,30 @@ export default {
 
   data() {
     return {
-      content: '<p>Hello <strong>World</strong></p>',
+      activeEditor: null,
+      blocks: [
+        {
+          id: 'foo',
+          content: '<p>Hello <strong>World</strong></p>',
+        },
+        {
+          id: 'bar',
+          content: '<h1>I like bacon</h1>',
+        },
+      ],
     };
+  },
+
+  methods: {
+    clearEditor(editor) {
+      if (this.activeEditor.id === editor.id) {
+        this.activeEditor = null;
+      }
+    },
+
+    setEditor(editor) {
+      this.activeEditor = editor;
+    },
   },
 };
 </script>

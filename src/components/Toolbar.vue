@@ -1,5 +1,5 @@
 <template>
-  <div :id="id" class="toolbar">
+  <div id="baz" class="toolbar">
   </div>
 </template>
 
@@ -8,7 +8,6 @@ export default {
   name: 'Toolbar',
 
   props: {
-    id: String,
     activeEditor: Object,
   },
 };
