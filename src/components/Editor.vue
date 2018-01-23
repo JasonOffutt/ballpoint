@@ -43,7 +43,7 @@ export default {
       const eventName = hasFocus ? 'editor:focus' : 'editor:blur';
 
       this.hasFocus = hasFocus;
-      this.$emit(eventName, { id: this.id, editor: this.editor });
+      this.$emit(eventName, { id: this.id, quill: this.editor });
     },
 
     setContent(content) {
