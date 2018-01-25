@@ -31,7 +31,6 @@ export default {
 
   data() {
     return {
-      hasSelectedCategory: false,
       selectedCategory: {},
     };
   },
@@ -47,17 +46,19 @@ export default {
     ...mapGetters({
       mergeFieldCategories: 'mergeFields/categories',
     }),
+
+    hasSelectedCategory() {
+      return this.selectedCategory.hasOwnProperty('fields');
+    },
   },
 
   methods: {
     clearSelectedCategory() {
       this.selectedCategory = {};
-      this.hasSelectedCategory = false;
     },
 
     selectCategory(category) {
       this.selectedCategory = category;
-      this.hasSelectedCategory = true;
     },
 
     selectField(field) {
