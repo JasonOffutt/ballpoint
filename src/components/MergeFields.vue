@@ -1,5 +1,5 @@
 <template>
-  <div class="merge-fields" :class="{ hidden: !expanded }">
+  <div class="merge-fields" :class="{ hidden: !visible }">
     <ul class="categories" :class="{ hidden: hasSelectedCategory }">
       <li v-for="(category, index) in mergeFieldCategories" :key="index">
         <button type="button" @click="selectCategory(category)">
@@ -37,7 +37,7 @@ export default {
   },
 
   props: {
-    expanded: {
+    visible: {
       type: Boolean,
       default: true,
     },

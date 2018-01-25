@@ -1,40 +1,63 @@
 <template>
   <div id="baz" class="toolbar">
-    <button class="format bold" @click="formatText('bold')">
+    <format-button :active="isBoldActive" format="bold" @format:text="formatText">
       <span class="fa fa-bold" />
-    </button>
+    </format-button>
 
-    <button class="format italic" @click="formatText('italic')">
+    <format-button :active="isItalicActive" format="italic" @format:text="formatText">
       <span class="fa fa-italic" />
-    </button>
+    </format-button>
 
-    <button class="format underline" @click="formatText('underline')">
+    <format-button :active="isUnderlineActive" format="underline" @format:text="formatText">
       <span class="fa fa-underline" />
-    </button>
+    </format-button>
 
-    <button class="format strikethrough" @click="formatText('strike')">
+    <format-button :active="isStrikethroughActive" format="strike" @format:text="formatText">
       <span class="fa fa-strikethrough" />
-    </button>
+    </format-button>
 
-    <button class="format merge-fields-button" @click="toggleMergeFields">
-      <span class="fa fa-magic" />
-    </button>
-    <merge-fields :expanded="showMergeFields" @mergeField:selected="handleMergeFieldSelection" />
+    <merge-button :active="showMergeFields" @merge:toggle="toggleMergeFields">
+      <span class="fa fa-magic" /> Merge Fields
+    </merge-button>
+    <merge-fields :visible="showMergeFields" @mergeField:selected="handleMergeFieldSelection" />
   </div>
 </template>
 
 <script>
+import FormatButton from './FormatButton';
+import MergeButton from './MergeButton';
 import MergeFields from './MergeFields';
 
 export default {
   name: 'Toolbar',
 
   components: {
+    FormatButton,
+    MergeButton,
     MergeFields,
   },
 
   props: {
     activeEditor: Object,
+    formats: Object,
+  },
+
+  computed: {
+    isBoldActive() {
+      return Boolean(this.formats.bold);
+    },
+
+    isItalicActive() {
+      return Boolean(this.formats.italic);
+    },
+
+    isUnderlineActive() {
+      return Boolean(this.formats.underline);
+    },
+
+    isStrikethroughActive() {
+      return Boolean(this.formats.strike);
+    },
   },
 
   data() {
@@ -77,25 +100,5 @@ export default {
   box-sizing: border-box;
   position: relative;
   text-align: left;
-
-  button {
-    height: 30px;
-    width: 30px;
-    font-size: 16px;
-    color: #58a1d8;
-    cursor: pointer;
-    border: 1px solid transparent;
-    border-radius: 4px;
-    box-sizing: border-box;
-
-    &:focus,
-    &:active {
-      outline: none;
-    }
-
-    &:hover {
-      border: 1px solid lighten(#58a1d8, 25%);
-    }
-  }
 }
 </style>

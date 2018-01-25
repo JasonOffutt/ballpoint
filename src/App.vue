@@ -2,6 +2,7 @@
   <div id="app">
     <toolbar
       :active-editor="activeEditor"
+      :formats="editorFormats"
       @editor:insert="insertText"
     />
 
@@ -9,9 +10,9 @@
       <editor
         :id="block.id"
         :content="block.content"
-        @editor:blur="updatePosition"
+        @editor:blur="updateEditorData"
         @editor:focus="setEditor"
-        @editor:input="updatePosition"
+        @editor:input="updateEditorData"
       />
     </div>
   </div>
@@ -33,6 +34,8 @@ export default {
     return {
       activeEditor: null,
 
+      editorFormats: {},
+
       editorSelection: {
         index: 0,
         length: 0,
@@ -52,19 +55,20 @@ export default {
   },
 
   methods: {
-    clearEditor(editor) {
-      if (this.activeEditor.id === editor.id) {
-        this.activeEditor = null;
-      }
+    getFormats() {
+      return this.activeEditor.quill.getFormat();
+    },
 
-      this.editorSelection = {
-        index: 0,
-        length: 0,
-      };
+    getSelection() {
+      return this.activeEditor.quill.getSelection();
+    },
+
+    hasEditor() {
+      return this.activeEditor != null;
     },
 
     insertText(value) {
-      if (this.activeEditor == null) {
+      if (!this.hasEditor()) {
         return;
       }
 
@@ -73,19 +77,22 @@ export default {
 
     setEditor(editor) {
       this.activeEditor = editor;
-      this.editorSelection = this.activeEditor.quill.getSelection();
+      this.editorSelection = this.getSelection();
+      this.editorFormats = this.getFormats();
     },
 
-    updatePosition() {
-      if (this.activeEditor == null) {
+    updateEditorData() {
+      if (!this.hasEditor()) {
         return;
       }
 
-      const selection = this.activeEditor.quill.getSelection();
+      const selection = this.getSelection();
 
       if (selection != null) {
         this.editorSelection = selection;
       }
+
+      this.editorFormats = this.getFormats();
     },
   },
 };
