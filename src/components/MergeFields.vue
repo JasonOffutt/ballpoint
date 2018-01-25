@@ -48,7 +48,7 @@ export default {
     }),
 
     hasSelectedCategory() {
-      return this.selectedCategory.hasOwnProperty('fields');
+      return Array.isArray(this.selectedCategory.fields);
     },
   },
 
