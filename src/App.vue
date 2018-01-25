@@ -10,9 +10,9 @@
       <editor
         :id="block.id"
         :content="block.content"
-        @editor:blur="updateEditorData"
+        @editor:blur="resetEditor"
         @editor:focus="setEditor"
-        @editor:input="updateEditorData"
+        @editor:input="updateSelection"
       />
     </div>
   </div>
@@ -44,7 +44,7 @@ export default {
       blocks: [
         {
           id: 'foo',
-          content: '<p>Hello <strong>World</strong></p>',
+          content: '<p>Lorem <b>ipsum</b> <i>sit</i> <u>amet</u> <s>dolor</s> consectetur</p>',
         },
         {
           id: 'bar',
@@ -72,7 +72,16 @@ export default {
         return;
       }
 
-      this.activeEditor.quill.insertText(this.editorSelection.index, value);
+      this.activeEditor.quill.insertText(this.editorSelection.index, ` ${value}`);
+    },
+
+    resetEditor(editor) {
+      this.updateSelection();
+
+      if (editor.id === this.activeEditor.id) {
+        this.activeEditor = null;
+        this.editorFormats = {};
+      }
     },
 
     setEditor(editor) {
@@ -81,7 +90,7 @@ export default {
       this.editorFormats = this.getFormats();
     },
 
-    updateEditorData() {
+    updateSelection() {
       if (!this.hasEditor()) {
         return;
       }
@@ -91,8 +100,6 @@ export default {
       if (selection != null) {
         this.editorSelection = selection;
       }
-
-      this.editorFormats = this.getFormats();
     },
   },
 };
