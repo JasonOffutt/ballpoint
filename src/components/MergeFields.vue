@@ -78,7 +78,7 @@ export default {
     border: 2px solid #58a1d8;
     z-index: 200;
     border-radius: 4px;
-    right: 0;
+    right: 20px;
     top: 60px;
 
     &.hidden {
@@ -108,6 +108,7 @@ export default {
           width: 100%;
           height: 100%;
           text-align: left;
+          cursor: pointer;
 
           &:focus,
           &:active {

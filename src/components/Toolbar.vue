@@ -73,21 +73,28 @@ export default {
   width: 100%;
   border: 2px solid #58a1d8;
   border-radius: 60px;
-  padding: 10px;
+  padding: 13px 20px;
   box-sizing: border-box;
   position: relative;
+  text-align: left;
 
-  .format {
-    height: 24px;
-    width: 24px;
+  button {
+    height: 30px;
+    width: 30px;
     font-size: 16px;
     color: #58a1d8;
-    border: none;
     cursor: pointer;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    box-sizing: border-box;
 
     &:focus,
     &:active {
       outline: none;
+    }
+
+    &:hover {
+      border: 1px solid lighten(#58a1d8, 25%);
     }
   }
 }
