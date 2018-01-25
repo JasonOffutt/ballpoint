@@ -36,6 +36,7 @@ export default {
       this.setContent(this.content);
       this.editor = new Quill(this.$refs.editorContainer);
       this.editor.on('selection-change', () => this.handleSelection());
+      this.editor.on('text-change', () => this.handleTextChange());
     },
 
     handleSelection() {
@@ -44,6 +45,10 @@ export default {
 
       this.hasFocus = hasFocus;
       this.$emit(eventName, { id: this.id, quill: this.editor });
+    },
+
+    handleTextChange() {
+      this.$emit('editor:input');
     },
 
     setContent(content) {

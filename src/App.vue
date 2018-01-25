@@ -1,13 +1,17 @@
 <template>
   <div id="app">
-    <toolbar :active-editor="activeEditor" />
+    <toolbar
+      :active-editor="activeEditor"
+      @editor:insert="insertText"
+    />
 
     <div v-for="(block, index) in blocks" :key="index">
       <editor
         :id="block.id"
         :content="block.content"
+        @editor:blur="updatePosition"
         @editor:focus="setEditor"
-        @editor:blur="clearEditor"
+        @editor:input="updatePosition"
       />
     </div>
   </div>
@@ -28,6 +32,12 @@ export default {
   data() {
     return {
       activeEditor: null,
+
+      editorSelection: {
+        index: 0,
+        length: 0,
+      },
+
       blocks: [
         {
           id: 'foo',
@@ -46,10 +56,36 @@ export default {
       if (this.activeEditor.id === editor.id) {
         this.activeEditor = null;
       }
+
+      this.editorSelection = {
+        index: 0,
+        length: 0,
+      };
+    },
+
+    insertText(value) {
+      if (this.activeEditor == null) {
+        return;
+      }
+
+      this.activeEditor.quill.insertText(this.editorSelection.index, value);
     },
 
     setEditor(editor) {
       this.activeEditor = editor;
+      this.editorSelection = this.activeEditor.quill.getSelection();
+    },
+
+    updatePosition() {
+      if (this.activeEditor == null) {
+        return;
+      }
+
+      const selection = this.activeEditor.quill.getSelection();
+
+      if (selection != null) {
+        this.editorSelection = selection;
+      }
     },
   },
 };

@@ -1,11 +1,7 @@
 export default {
-  allMergeFields({ mergeFields }) {
+  categories({ categories }) {
     return {
-      ...mergeFields,
+      ...categories,
     };
-  },
-
-  categories({ mergeFields }) {
-    return mergeFields.map(item => item.category);
   },
 };

@@ -1,5 +1,5 @@
 export default {
-  mergeFields: [
+  categories: [
     {
       category: 'Contact fields (Most common)',
       fields: [
@@ -80,7 +80,7 @@ export default {
         },
         {
           label: 'Current Day of Month',
-          value: '~Contact.DayOfMonth~',
+          value: '~Date.DayOfMonth~',
         },
         {
           label: 'Current Month',
