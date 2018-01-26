@@ -1,9 +1,9 @@
 <template>
   <button
-      class="format-button"
-      type="button"
-      :class="{ active, format }"
-      @click="handleClick"
+    class="list-button"
+    type="button"
+    :class="{ active }"
+    @click="handleClick"
   >
     <slot />
   </button>
@@ -11,7 +11,7 @@
 
 <script>
 export default {
-  name: 'FormatButton',
+  name: 'ListButton',
 
   props: {
     active: {
@@ -19,22 +19,23 @@ export default {
       default: false,
     },
 
-    format: {
+    kind: {
       type: String,
-      default: null,
+      value: '',
+      required: true,
     },
   },
 
   methods: {
     handleClick() {
-      this.$emit('format:text', this.format);
+      this.$emit('format:list', this.kind);
     },
   },
 };
 </script>
 
 <style lang="scss">
-  .format-button {
+  .list-button {
     width: 30px;
     height: 30px;
     font-size: 16px;
@@ -58,3 +59,4 @@ export default {
     }
   }
 </style>
+

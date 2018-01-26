@@ -1,5 +1,5 @@
 <template>
-  <div class="merge-fields" :class="{ hidden: !visible }">
+  <div class="merge-fields-dropdown" :class="{ hidden: !visible }">
     <ul class="categories" :class="{ hidden: hasSelectedCategory }">
       <li v-for="(category, index) in mergeFieldCategories" :key="index">
         <button type="button" @click="selectCategory(category)">
@@ -70,7 +70,7 @@ export default {
 </script>
 
 <style lang="scss">
-  .merge-fields {
+  .merge-fields-dropdown {
     overflow-x: hidden;
     width: 250px;
     height: 200px;
@@ -102,6 +102,10 @@ export default {
         border-bottom: 1px solid #58a1d8;
         padding: 5px;
 
+        &:hover {
+          background: #fafafa;
+        }
+
         button {
           border: none;
           background: transparent;
@@ -110,6 +114,7 @@ export default {
           height: 100%;
           text-align: left;
           cursor: pointer;
+          color: darken(#58a1d8, 20%);
 
           &:focus,
           &:active {

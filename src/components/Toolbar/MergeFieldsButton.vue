@@ -1,6 +1,6 @@
 <template>
   <button
-    class="merge-button"
+    class="merge-fields-button"
     :class="{ active }"
     @click="handleClick"
   >
@@ -28,7 +28,7 @@ export default {
 </script>
 
 <style lang="scss">
-  .merge-button {
+  .merge-fields-button {
       width: auto;
       height: 30px;
       font-size: 16px;

@@ -3,6 +3,7 @@
     <toolbar
       :active-editor="activeEditor"
       :formats="editorFormats"
+      @editor:format="updateFormats"
       @editor:insert="insertText"
     />
 
@@ -87,6 +88,10 @@ export default {
     setEditor(editor) {
       this.activeEditor = editor;
       this.editorSelection = this.getSelection();
+      this.editorFormats = this.getFormats();
+    },
+
+    updateFormats() {
       this.editorFormats = this.getFormats();
     },
 

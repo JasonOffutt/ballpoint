@@ -16,25 +16,38 @@
       <span class="fa fa-strikethrough" />
     </format-button>
 
-    <merge-button :active="showMergeFields" @merge:toggle="toggleMergeFields">
+    <list-button :active="isOrderedListActive" kind="ordered" @format:list="formatList">
+      <span class="fa fa-list-ol" />
+    </list-button>
+
+    <list-button :active="isUnorderedListActive" kind="bullet" @format:list="formatList">
+      <span class="fa fa-list-ul" />
+    </list-button>
+
+    <merge-fields-button :active="showMergeFields" @merge:toggle="toggleMergeFields">
       <span class="fa fa-magic" /> Merge Fields
-    </merge-button>
-    <merge-fields :visible="showMergeFields" @mergeField:selected="handleMergeFieldSelection" />
+    </merge-fields-button>
+    <merge-fields-dropdown
+      :visible="showMergeFields"
+      @mergeField:selected="handleMergeFieldSelection"
+    />
   </div>
 </template>
 
 <script>
 import FormatButton from './FormatButton';
-import MergeButton from './MergeButton';
-import MergeFields from './MergeFields';
+import ListButton from './ListButton';
+import MergeFieldsButton from './MergeFieldsButton';
+import MergeFieldsDropdown from './MergeFieldsDropdown';
 
 export default {
   name: 'Toolbar',
 
   components: {
     FormatButton,
-    MergeButton,
-    MergeFields,
+    ListButton,
+    MergeFieldsButton,
+    MergeFieldsDropdown,
   },
 
   props: {
@@ -58,6 +71,14 @@ export default {
     isStrikethroughActive() {
       return Boolean(this.formats.strike);
     },
+
+    isOrderedListActive() {
+      return this.formats.list === 'ordered';
+    },
+
+    isUnorderedListActive() {
+      return this.formats.list === 'bullet';
+    },
   },
 
   data() {
@@ -67,6 +88,16 @@ export default {
   },
 
   methods: {
+    formatList(kind) {
+      if (!this.activeEditor) {
+        return;
+      }
+
+      const editor = this.activeEditor.quill;
+      editor.format('list', kind);
+      this.$emit('editor:format');
+    },
+
     formatText(format) {
       if (!this.activeEditor) {
         return;
@@ -76,6 +107,7 @@ export default {
       const currentFormat = editor.getFormat();
 
       editor.format(format, !currentFormat[format]);
+      this.$emit('editor:format');
     },
 
     handleMergeFieldSelection(value) {
