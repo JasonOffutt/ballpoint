@@ -53,13 +53,11 @@ export default {
           content: `
 <h2>Things I like:</h2>
 <ol>
+  <li>Helping small businesses succeed</li>
   <li>Vue + Vuex</li>
-  <li>Sass</li>
-  <li>Webpack</li>
   <li>Quill</li>
   <li><s>Polymer</s></li>
-</ol>
-`,
+</ol>`,
         },
       ],
     };
