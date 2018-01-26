@@ -16,6 +16,8 @@
       <span class="fa fa-strikethrough" />
     </format-button>
 
+    <alignment-select kind="" @format:align="formatAlignment" />
+
     <list-button :active="isOrderedListActive" kind="ordered" @format:list="formatList">
       <span class="fa fa-list-ol" />
     </list-button>
@@ -24,17 +26,20 @@
       <span class="fa fa-list-ul" />
     </list-button>
 
-    <merge-fields-button :active="showMergeFields" @merge:toggle="toggleMergeFields">
-      <span class="fa fa-magic" /> Merge Fields
-    </merge-fields-button>
-    <merge-fields-dropdown
-      :visible="showMergeFields"
-      @mergeField:selected="handleMergeFieldSelection"
-    />
+    <div class="merge-field-select">
+      <merge-fields-button :active="showMergeFields" @merge:toggle="toggleMergeFields">
+        <span class="fa fa-magic" /> Merge Fields
+      </merge-fields-button>
+      <merge-fields-dropdown
+        :visible="showMergeFields"
+        @mergeField:selected="handleMergeFieldSelection"
+      />
+    </div>
   </div>
 </template>
 
 <script>
+import AlignmentSelect from './AlignmentSelect';
 import FormatButton from './FormatButton';
 import ListButton from './ListButton';
 import MergeFieldsButton from './MergeFieldsButton';
@@ -44,6 +49,7 @@ export default {
   name: 'Toolbar',
 
   components: {
+    AlignmentSelect,
     FormatButton,
     ListButton,
     MergeFieldsButton,
@@ -89,6 +95,16 @@ export default {
   },
 
   methods: {
+    formatAlignment(kind) {
+      if (!this.activeEditor) {
+        return;
+      }
+
+      const editor = this.activeEditor.quill;
+      editor.format('align', kind);
+      this.$emit('editor:format');
+    },
+
     formatList(kind) {
       if (!this.activeEditor) {
         return;
@@ -139,10 +155,12 @@ export default {
   z-index: 10;
   background: #fefefe;
   transform: translateY(-180px);
-  transition: 0.25s transform ease-out;
+  transition: 0.25s transform ease-out, 0.25s opacity ease-out;
+  opacity: 0;
 
   &.active {
     transform: translateY(-90px);
+    opacity: 1;
   }
 }
 </style>
