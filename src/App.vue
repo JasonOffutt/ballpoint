@@ -50,7 +50,16 @@ export default {
         },
         {
           id: 'bar',
-          content: '<h1>I like bacon</h1>',
+          content: `
+<h2>Things I like:</h2>
+<ol>
+  <li>Vue + Vuex</li>
+  <li>Sass</li>
+  <li>Webpack</li>
+  <li>Quill</li>
+  <li><s>Polymer</s></li>
+</ol>
+`,
         },
       ],
     };
