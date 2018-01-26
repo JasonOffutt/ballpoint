@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <toolbar
+      :active="hasActiveEditor"
       :active-editor="activeEditor"
       :formats="editorFormats"
       @editor:format="updateFormats"
@@ -53,6 +54,12 @@ export default {
         },
       ],
     };
+  },
+
+  computed: {
+    hasActiveEditor() {
+      return this.activeEditor != null;
+    },
   },
 
   methods: {
@@ -118,10 +125,11 @@ export default {
   text-align: center;
   color: #2c3e50;
   width: 600px;
-  margin: 60px auto 0;
+  margin: 120px auto 0;
+  background: #fefefe;
 }
 
-#foo, #bar, #baz {
+#foo, #bar {
   margin: 0 auto 30px;
 }
 </style>

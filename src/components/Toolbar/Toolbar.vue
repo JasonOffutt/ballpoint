@@ -1,5 +1,5 @@
 <template>
-  <div id="baz" class="toolbar">
+  <div id="baz" class="toolbar" :class="{ active }">
     <format-button :active="isBoldActive" format="bold" @format:text="formatText">
       <span class="fa fa-bold" />
     </format-button>
@@ -51,6 +51,7 @@ export default {
   },
 
   props: {
+    active: Boolean,
     activeEditor: Object,
     formats: Object,
   },
@@ -125,12 +126,23 @@ export default {
 <style lang="scss">
 .toolbar {
   height: 60px;
-  width: 100%;
+  width: 600px;
   border: 2px solid #58a1d8;
   border-radius: 60px;
   padding: 13px 20px;
   box-sizing: border-box;
   position: relative;
   text-align: left;
+  position: fixed;
+  display: flex;
+  flex-direction: row;
+  z-index: 10;
+  background: #fefefe;
+  transform: translateY(-180px);
+  transition: 0.25s transform ease-out;
+
+  &.active {
+    transform: translateY(-90px);
+  }
 }
 </style>
