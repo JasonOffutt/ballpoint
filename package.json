@@ -1,5 +1,5 @@
 {
-  "name": "vue-quill",
+  "name": "@JasonOffutt/ballpoint",
   "version": "1.0.0",
   "description": "Custom rich text editor using vue and quill",
   "author": "JasonOffutt <jason.offutt@gmail.com>",
