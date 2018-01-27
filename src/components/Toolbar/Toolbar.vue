@@ -99,7 +99,7 @@ export default {
       }
 
       const editor = this.activeEditor.quill;
-      editor.format('list', kind);
+      editor.format('list', this.formats.list !== kind ? kind : '');
       this.$emit('editor:format');
     },
 
