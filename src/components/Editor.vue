@@ -69,6 +69,7 @@ export default {
   height: 150px;
   border: 1px solid #dfe0e3;
   border-radius: 4px;
+  box-sizing: border-box;
 
   &.focus {
     border: transparent;
