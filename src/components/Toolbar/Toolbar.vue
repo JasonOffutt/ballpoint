@@ -16,7 +16,7 @@
       <span class="fa fa-strikethrough" />
     </format-button>
 
-    <alignment-select kind="" @format:align="formatAlignment" />
+    <alignment-select :kind="activeAlignment" @format:align="formatAlignment" />
 
     <list-button :active="isOrderedListActive" kind="ordered" @format:list="formatList">
       <span class="fa fa-list-ol" />
@@ -63,6 +63,10 @@ export default {
   },
 
   computed: {
+    activeAlignment() {
+      return this.formats.align;
+    },
+
     isBoldActive() {
       return Boolean(this.formats.bold);
     },

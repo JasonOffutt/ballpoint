@@ -14,7 +14,7 @@
 </template>
 
 <script>
-const defaultKind = { icon: 'fa-align-left', label: 'Left', value: 'left' };
+const defaultKind = { icon: 'fa-align-left', label: 'Left', value: '' };
 
 export default {
   name: 'AlignmentSelect',
@@ -22,14 +22,18 @@ export default {
   props: {
     kind: {
       type: String,
-      value: defaultKind.value,
+      default: defaultKind.value,
+    },
+  },
+
+  computed: {
+    activeKind() {
+      return this.kinds.find(kind => kind.value === this.kind);
     },
   },
 
   data() {
     return {
-      // TODO: Perhaps this ought to go into storage.
-      activeKind: defaultKind,
       kinds: [
         defaultKind,
         { icon: 'fa-align-center', label: 'Center', value: 'center' },
@@ -46,7 +50,6 @@ export default {
     },
 
     handleOptionClick(kind) {
-      this.activeKind = kind;
       this.showList = false;
       this.$emit('format:align', kind.value);
     },
