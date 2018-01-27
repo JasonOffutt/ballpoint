@@ -5,7 +5,7 @@
     @click="handleClick"
   >
     <slot />
-    </button>
+  </button>
 </template>
 
 <script>

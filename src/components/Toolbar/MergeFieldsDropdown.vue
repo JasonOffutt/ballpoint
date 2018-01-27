@@ -1,5 +1,10 @@
 <template>
-  <div class="merge-fields-dropdown" :class="{ hidden: !visible }">
+  <div
+    class="merge-fields-dropdown"
+    v-show="visible"
+    @mouseout="hover(false)"
+    @mouseover="hover(true)"
+  >
     <ul class="categories" :class="{ hidden: hasSelectedCategory }">
       <li v-for="(category, index) in mergeFieldCategories" :key="index">
         <button type="button" @click="selectCategory(category)">
@@ -36,6 +41,11 @@ export default {
   },
 
   props: {
+    hover: {
+      type: Function,
+      default: x => x,
+    },
+
     visible: {
       type: Boolean,
       default: true,
@@ -80,10 +90,6 @@ export default {
   z-index: 200;
   border-radius: 4px;
   top: 45px;
-
-  &.hidden {
-    display: none;
-  }
 
   .categories,
   .fields {

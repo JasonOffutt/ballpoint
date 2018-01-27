@@ -1,9 +1,19 @@
 <template>
   <div class="alignment-select">
-    <button class="alignment-button" :class="{ active: showList }" @click="handleButtonClick">
+    <button
+      class="alignment-button"
+      :class="{ active: showMenu }"
+      :tabindex="tabIndex"
+      @blur="handleBlur()"
+      @click="handleButtonClick">
       <span class="fa" :class="activeKind.icon" />
     </button>
-    <ul class="alignment-list" :class="{ hidden: !showList }">
+    <ul
+      class="alignment-list"
+      v-show="showMenu"
+      @mouseout="handleHover(false)"
+      @mouseover="handleHover(true)"
+    >
       <li v-for="(kind, index) in kinds" :key="index">
         <button type="button" :title="kind.label" @click="handleOptionClick(kind)">
           <span class="fa" :class="kind.icon"/>
@@ -14,6 +24,8 @@
 </template>
 
 <script>
+import menu from '../../mixins/menu';
+
 const defaultKind = { icon: 'fa-align-left', label: 'Left', value: '' };
 
 export default {
@@ -25,6 +37,8 @@ export default {
       default: defaultKind.value,
     },
   },
+
+  mixins: [menu],
 
   computed: {
     activeKind() {
@@ -40,17 +54,12 @@ export default {
         { icon: 'fa-align-right', label: 'Right', value: 'right' },
         { icon: 'fa-align-justify', label: 'justify', value: 'justify' },
       ],
-      showList: false,
     };
   },
 
   methods: {
-    handleButtonClick() {
-      this.showList = !this.showList;
-    },
-
     handleOptionClick(kind) {
-      this.showList = false;
+      this.showMenu = false;
       this.$emit('format:align', kind.value);
     },
   },
@@ -95,10 +104,6 @@ export default {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-
-    &.hidden {
-      display: none;
-    }
 
     li {
       border-bottom: 1px solid #58a1d8;

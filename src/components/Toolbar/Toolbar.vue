@@ -26,15 +26,7 @@
       <span class="fa fa-list-ul" />
     </list-button>
 
-    <div class="merge-field-select">
-      <merge-fields-button :active="showMergeFields" @merge:toggle="toggleMergeFields">
-        <span class="fa fa-magic" /> Merge Fields
-      </merge-fields-button>
-      <merge-fields-dropdown
-        :visible="showMergeFields"
-        @mergeField:selected="handleMergeFieldSelection"
-      />
-    </div>
+    <merge-field-select @mergeField:selected="handleMergeFieldSelection" />
   </div>
 </template>
 
@@ -42,8 +34,7 @@
 import AlignmentSelect from './AlignmentSelect';
 import FormatButton from './FormatButton';
 import ListButton from './ListButton';
-import MergeFieldsButton from './MergeFieldsButton';
-import MergeFieldsDropdown from './MergeFieldsDropdown';
+import MergeFieldSelect from './MergeFieldSelect';
 
 export default {
   name: 'Toolbar',
@@ -52,8 +43,7 @@ export default {
     AlignmentSelect,
     FormatButton,
     ListButton,
-    MergeFieldsButton,
-    MergeFieldsDropdown,
+    MergeFieldSelect,
   },
 
   props: {
@@ -92,12 +82,6 @@ export default {
     },
   },
 
-  data() {
-    return {
-      showMergeFields: false,
-    };
-  },
-
   methods: {
     formatAlignment(kind) {
       if (!this.activeEditor) {
@@ -132,12 +116,7 @@ export default {
     },
 
     handleMergeFieldSelection(value) {
-      this.showMergeFields = false;
       this.$emit('editor:insert', value);
-    },
-
-    toggleMergeFields() {
-      this.showMergeFields = !this.showMergeFields;
     },
   },
 };
