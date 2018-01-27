@@ -35,28 +35,10 @@ export default {
 </script>
 
 <style lang="scss">
-  .list-button {
-    width: 30px;
-    height: 30px;
-    font-size: 16px;
-    color: #58a1d8;
-    cursor: pointer;
-    border: 1px solid transparent;
-    border-radius: 4px;
-    box-sizing: border-box;
+@import '~style/mixins';
 
-    &:focus,
-    &:active {
-      outline: none;
-    }
-
-    &:hover {
-      border: 1px solid lighten(#58a1d8, 25%);
-    }
-
-    &.active {
-      border: 1px solid lighten(#58a1d8, 25%);
-    }
-  }
+.list-button {
+  @include button();
+}
 </style>
 

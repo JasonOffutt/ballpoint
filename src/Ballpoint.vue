@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="ballpoint">
     <toolbar
       :active="hasActiveEditor"
       :active-editor="activeEditor"
@@ -124,19 +124,17 @@ export default {
 };
 </script>
 
-<style>
-#app {
+<style lang="scss">
+@import '~style/variables';
+
+#ballpoint {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  width: 600px;
+  width: $spacing-full;
   margin: 120px auto 0;
-  background: #fefefe;
-}
-
-#foo, #bar {
-  margin: 0 auto 30px;
+  background: $light-gray-lighten-2;
 }
 </style>

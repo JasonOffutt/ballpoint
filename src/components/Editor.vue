@@ -65,15 +65,18 @@ export default {
 </script>
 
 <style lang="scss">
+@import '~style/variables';
+@import '~style/mixins';
+
 .editor {
-  height: 150px;
-  border: 1px solid #dfe0e3;
+  height: $spacing-quarter;
+  border: 1px solid $light-gray;
   border-radius: 4px;
   box-sizing: border-box;
+  margin-bottom: $spacing-margin;
 
   &.focus {
-    border: transparent;
-    box-shadow: 0 0 0 0.125rem #58a1d8;
+    @include blue-outline();
   }
 }
 

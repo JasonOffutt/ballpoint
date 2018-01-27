@@ -67,71 +67,21 @@ export default {
 </script>
 
 <style lang="scss">
+@import '~style/variables';
+@import '~style/mixins';
+
 .alignment-select {
   .alignment-button {
-    width: 30px;
-    height: 30px;
-    font-size: 16px;
-    color: #58a1d8;
-    cursor: pointer;
-    border: 1px solid transparent;
-    border-radius: 4px;
-    box-sizing: border-box;
-
-    &:focus,
-    &:active {
-      outline: none;
-    }
-
-    &:hover {
-      border: 1px solid lighten(#58a1d8, 25%);
-    }
-
-    &.active {
-      border: 1px solid lighten(#58a1d8, 25%);
-    }
+    @include button();
   }
 
   .alignment-list {
-    width: 30px;
-    position: absolute;
-    background: #fff;
-    border: 2px solid #58a1d8;
-    z-index: 200;
-    border-radius: 4px;
-    top: 45px;
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
+    @include list();
+    width: $spacing-button;
     box-sizing: border-box;
 
     li {
-      border-bottom: 1px solid #58a1d8;
       text-align: center;
-
-      &:hover {
-        background: #fafafa;
-      }
-
-      &:last-child {
-        border-bottom: none;
-      }
-
-      button {
-        border: none;
-        background: transparent;
-        font-size: 14px;
-        width: 100%;
-        height: 100%;
-        text-align: left;
-        cursor: pointer;
-        color: darken(#58a1d8, 20%);
-
-        &:focus,
-        &:active {
-          outline: none;
-        }
-      }
     }
   }
 }

@@ -123,11 +123,13 @@ export default {
 </script>
 
 <style lang="scss">
+@import '~style/variables';
+
 .toolbar {
-  height: 60px;
-  width: 600px;
-  border: 2px solid #58a1d8;
-  border-radius: 60px;
+  height: $spacing-margin * 2;
+  width: $spacing-full;
+  border: 2px solid $light-blue;
+  border-radius: $spacing-margin;
   padding: 13px 20px;
   box-sizing: border-box;
   position: relative;
@@ -136,7 +138,7 @@ export default {
   display: flex;
   flex-direction: row;
   z-index: 10;
-  background: #fefefe;
+  background: $light-gray-lighten-2;
   transform: translateY(-180px);
   transition: 0.25s transform ease-out, 0.25s opacity ease-out;
   opacity: 0;

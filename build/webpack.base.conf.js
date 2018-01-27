@@ -5,7 +5,7 @@ const config = require('../config')
 const vueLoaderConfig = require('./vue-loader.conf')
 
 function resolve (dir) {
-  return path.join(__dirname, '..', dir)
+  return path.join(__dirname, '..', dir);
 }
 
 const createLintingRule = () => ({
@@ -17,7 +17,7 @@ const createLintingRule = () => ({
     formatter: require('eslint-friendly-formatter'),
     emitWarning: !config.dev.showEslintErrorsInOverlay
   }
-})
+});
 
 module.exports = {
   context: path.resolve(__dirname, '../'),
@@ -35,6 +35,7 @@ module.exports = {
     extensions: ['.js', '.vue', '.json'],
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
+      'style': resolve('style'),
       '@': resolve('src'),
     }
   },
@@ -50,6 +51,11 @@ module.exports = {
         test: /\.js$/,
         loader: 'babel-loader',
         include: [resolve('src'), resolve('test'), resolve('node_modules/webpack-dev-server/client')]
+      },
+      {
+        test: /.s[a|c]ss/,
+        loader: 'style-loader!css-loader!sass-loader',
+
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
@@ -89,4 +95,4 @@ module.exports = {
     tls: 'empty',
     child_process: 'empty'
   }
-}
+};

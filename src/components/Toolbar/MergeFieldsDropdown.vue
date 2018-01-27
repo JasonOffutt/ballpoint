@@ -80,52 +80,23 @@ export default {
 </script>
 
 <style lang="scss">
+@import '~style/mixins';
+
 .merge-fields-dropdown {
+  @include list();
   overflow-x: hidden;
   width: 250px;
   height: 200px;
-  position: absolute;
-  background: #fff;
-  border: 2px solid #58a1d8;
-  z-index: 200;
-  border-radius: 4px;
-  top: 45px;
 
   .categories,
   .fields {
     width: 100%;
-    display: block;
     transition: 0.25s transform ease-out;
-    list-style-type: none;
     text-align: left;
-    padding: 0;
-    margin: 0;
-    position: absolute;
     top: 0;
 
     li {
-      border-bottom: 1px solid #58a1d8;
       padding: 5px;
-
-      &:hover {
-        background: #fafafa;
-      }
-
-      button {
-        border: none;
-        background: transparent;
-        font-size: 14px;
-        width: 100%;
-        height: 100%;
-        text-align: left;
-        cursor: pointer;
-        color: darken(#58a1d8, 20%);
-
-        &:focus,
-        &:active {
-          outline: none;
-        }
-      }
     }
   }
 
