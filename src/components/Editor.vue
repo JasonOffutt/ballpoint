@@ -32,11 +32,8 @@ export default {
   },
 
   methods: {
-    initEditor() {
-      this.setContent(this.content);
-      this.editor = new Quill(this.$refs.editorContainer);
-      this.editor.on('selection-change', () => this.handleSelection());
-      this.editor.on('text-change', () => this.handleTextChange());
+    getContent() {
+      return this.$refs.editorContainer.innerHTML;
     },
 
     handleSelection() {
@@ -49,6 +46,13 @@ export default {
 
     handleTextChange() {
       this.$emit('editor:input');
+    },
+
+    initEditor() {
+      this.setContent(this.content);
+      this.editor = new Quill(this.$refs.editorContainer);
+      this.editor.on('selection-change', () => this.handleSelection());
+      this.editor.on('text-change', () => this.handleTextChange());
     },
 
     setContent(content) {
