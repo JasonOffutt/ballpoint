@@ -7,6 +7,7 @@
       @blur="handleBlur()"
       @click="handleButtonClick">
       <span class="fa" :class="activeKind.icon" />
+      <span class="fa fa-caret-down" />
     </button>
     <ul
       class="alignment-list"
@@ -73,6 +74,7 @@ export default {
 .alignment-select {
   .alignment-button {
     @include button();
+    width: auto;
   }
 
   .alignment-list {
