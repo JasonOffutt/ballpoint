@@ -2,6 +2,8 @@
   <div id="baz" class="toolbar" :class="{ active }">
     <font-size-select :kind="activeSize" @format:size="formatSize" />
 
+    <color-select :color="activeColor" @format:color="formatColor" />
+
     <format-button :active="isBoldActive" format="bold" @format:text="formatText">
       <span class="fa fa-bold" />
     </format-button>
@@ -34,6 +36,7 @@
 
 <script>
 import AlignmentSelect from './AlignmentSelect';
+import ColorSelect from './ColorSelect';
 import FontSizeSelect from './FontSizeSelect';
 import FormatButton from './FormatButton';
 import ListButton from './ListButton';
@@ -44,6 +47,7 @@ export default {
 
   components: {
     AlignmentSelect,
+    ColorSelect,
     FontSizeSelect,
     FormatButton,
     ListButton,
@@ -59,6 +63,10 @@ export default {
   computed: {
     activeAlignment() {
       return this.formats.align;
+    },
+
+    activeColor() {
+      return this.formats.color;
     },
 
     activeSize() {
@@ -98,6 +106,16 @@ export default {
 
       const editor = this.activeEditor.quill;
       editor.format('align', kind);
+      this.$emit('editor:format');
+    },
+
+    formatColor(color) {
+      if (!this.activeEditor) {
+        return;
+      }
+
+      const editor = this.activeEditor.quill;
+      editor.format('color', color);
       this.$emit('editor:format');
     },
 
