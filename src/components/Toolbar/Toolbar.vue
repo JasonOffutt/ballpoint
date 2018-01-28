@@ -1,32 +1,32 @@
 <template>
   <div id="baz" class="toolbar" :class="{ active }">
-    <font-size-select :kind="activeSize" @format:size="formatSize" />
+    <font-size-select :kind="activeSize" @format:size="handleFormatSize" />
 
-    <color-select :color="activeColor" @format:color="formatColor" />
+    <color-select :color="activeColor" @format:color="handleFormatColor" />
 
-    <format-button :active="isBoldActive" format="bold" @format:text="formatText">
+    <format-button :active="isBoldActive" format="bold" @format:text="handleFormatText">
       <span class="fa fa-bold" />
     </format-button>
 
-    <format-button :active="isItalicActive" format="italic" @format:text="formatText">
+    <format-button :active="isItalicActive" format="italic" @format:text="handleFormatText">
       <span class="fa fa-italic" />
     </format-button>
 
-    <format-button :active="isUnderlineActive" format="underline" @format:text="formatText">
+    <format-button :active="isUnderlineActive" format="underline" @format:text="handleFormatText">
       <span class="fa fa-underline" />
     </format-button>
 
-    <format-button :active="isStrikethroughActive" format="strike" @format:text="formatText">
+    <format-button :active="isStrikethroughActive" format="strike" @format:text="handleFormatText">
       <span class="fa fa-strikethrough" />
     </format-button>
 
-    <alignment-select :kind="activeAlignment" @format:align="formatAlignment" />
+    <alignment-select :kind="activeAlignment" @format:align="handleFormatAlignment" />
 
-    <list-button :active="isOrderedListActive" kind="ordered" @format:list="formatList">
+    <list-button :active="isOrderedListActive" kind="ordered" @format:list="handleFormatList">
       <span class="fa fa-list-ol" />
     </list-button>
 
-    <list-button :active="isUnorderedListActive" kind="bullet" @format:list="formatList">
+    <list-button :active="isUnorderedListActive" kind="bullet" @format:list="handleFormatList">
       <span class="fa fa-list-ul" />
     </list-button>
 
@@ -99,56 +99,41 @@ export default {
   },
 
   methods: {
-    formatAlignment(kind) {
+    applyFormat(format, value) {
       if (!this.activeEditor) {
         return;
       }
 
       const editor = this.activeEditor.quill;
-      editor.format('align', kind);
+      editor.format(format, value);
       this.$emit('editor:format');
     },
 
-    formatColor(color) {
-      if (!this.activeEditor) {
-        return;
-      }
-
-      const editor = this.activeEditor.quill;
-      editor.format('color', color);
-      this.$emit('editor:format');
+    handleFormatAlignment(kind) {
+      this.applyFormat('align', kind);
     },
 
-    formatList(kind) {
-      if (!this.activeEditor) {
-        return;
-      }
-
-      const editor = this.activeEditor.quill;
-      editor.format('list', this.formats.list !== kind ? kind : '');
-      this.$emit('editor:format');
+    handleFormatColor(color) {
+      this.applyFormat('color', color);
     },
 
-    formatSize(kind) {
-      if (!this.activeEditor) {
-        return;
-      }
+    handleFormatList(kind) {
+      const value = this.formats.list !== kind ? kind : '';
 
-      const editor = this.activeEditor.quill;
-      editor.format('size', this.formats.size !== kind ? kind : '');
-      this.$emit('editor:format');
+      this.applyFormat('list', value);
     },
 
-    formatText(format) {
-      if (!this.activeEditor) {
-        return;
-      }
+    handleFormatSize(kind) {
+      const value = this.formats.size !== kind ? kind : '';
 
+      this.applyFormat('size', value);
+    },
+
+    handleFormatText(format) {
       const editor = this.activeEditor.quill;
       const currentFormat = editor.getFormat();
 
-      editor.format(format, !currentFormat[format]);
-      this.$emit('editor:format');
+      this.applyFormat(format, !currentFormat[format]);
     },
 
     handleMergeFieldSelection(value) {
