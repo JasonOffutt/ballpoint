@@ -1,5 +1,7 @@
 <template>
   <div id="baz" class="toolbar" :class="{ active }">
+    <font-size-select :kind="activeSize" @format:size="formatSize" />
+
     <format-button :active="isBoldActive" format="bold" @format:text="formatText">
       <span class="fa fa-bold" />
     </format-button>
@@ -32,6 +34,7 @@
 
 <script>
 import AlignmentSelect from './AlignmentSelect';
+import FontSizeSelect from './FontSizeSelect';
 import FormatButton from './FormatButton';
 import ListButton from './ListButton';
 import MergeFieldSelect from './MergeFieldSelect';
@@ -41,6 +44,7 @@ export default {
 
   components: {
     AlignmentSelect,
+    FontSizeSelect,
     FormatButton,
     ListButton,
     MergeFieldSelect,
@@ -55,6 +59,10 @@ export default {
   computed: {
     activeAlignment() {
       return this.formats.align;
+    },
+
+    activeSize() {
+      return this.formats.size;
     },
 
     isBoldActive() {
@@ -100,6 +108,16 @@ export default {
 
       const editor = this.activeEditor.quill;
       editor.format('list', this.formats.list !== kind ? kind : '');
+      this.$emit('editor:format');
+    },
+
+    formatSize(kind) {
+      if (!this.activeEditor) {
+        return;
+      }
+
+      const editor = this.activeEditor.quill;
+      editor.format('size', this.formats.size !== kind ? kind : '');
       this.$emit('editor:format');
     },
 
