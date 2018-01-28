@@ -7,7 +7,8 @@
       @blur="handleBlur"
       @click="handleButtonClick"
     >
-      <span class="fa fa-magic" /> Merge Fields
+      Merge Fields
+      <span class="fa fa-caret-down" />
     </button>
     <merge-fields-dropdown
       :visible="showMenu"
