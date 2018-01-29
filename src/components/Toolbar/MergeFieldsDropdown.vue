@@ -7,20 +7,20 @@
   >
     <ul class="categories" :class="{ hidden: hasSelectedCategory }">
       <li v-for="(category, index) in mergeFieldCategories" :key="index">
-        <button type="button" @click="selectCategory(category)">
+        <button type="button" :title="category.category" @click="selectCategory(category)">
           {{ category.category }}
         </button>
       </li>
     </ul>
     <ul class="fields" :class="{ hidden: !hasSelectedCategory }">
       <li class="back">
-        <button type="button" @click="clearSelectedCategory">
+        <button type="button" title="Go back" @click="clearSelectedCategory">
           <span class="fa fa-chevron-left" />
           {{ selectedCategory.category }}
         </button>
       </li>
       <li v-for="(field, index) in selectedCategory.fields" :key="index">
-        <button type="button" @click="selectField(field)">
+        <button type="button" :title="field.label" @click="selectField(field)">
           {{ field.label }}
         </button>
       </li>

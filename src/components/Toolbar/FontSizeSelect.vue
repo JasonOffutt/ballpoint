@@ -75,6 +75,7 @@ export default {
 
 <style lang="scss">
 @import '~style/mixins';
+@import '~style/variables';
 
 .font-size-select {
   .font-size-button {
@@ -92,15 +93,15 @@ export default {
     }
 
     .huge {
-      font-size: 32px;
+      font-size: $font-size-huge;
     }
 
     .large {
-      font-size: 18px;
+      font-size: $font-size-large;
     }
 
     .small {
-      font-size: 10px;
+      font-size: $font-size-small;
     }
   }
 }
