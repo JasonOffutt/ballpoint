@@ -129,7 +129,7 @@ export default {
 @import '~style/main';
 
 #ballpoint {
-  color: #2c3e50;
+  color: $slate;
   margin: 0 auto;
   width: $spacing-full;
   background: $light-gray-lighten-2;

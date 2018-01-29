@@ -23,8 +23,20 @@ export default {
   },
 
   props: {
-    id: String,
-    content: String,
+    id: {
+      type: String,
+      default: '',
+    },
+
+    content: {
+      type: String,
+      default: '',
+    },
+
+    placeholder: {
+      type: String,
+      default: '',
+    },
   },
 
   mounted() {
@@ -56,7 +68,7 @@ export default {
 
     initEditor() {
       this.setContent(this.content);
-      this.editor = new Quill(this.$refs.editorContainer);
+      this.editor = new Quill(this.$refs.editorContainer, { placeholder: this.placeholder });
       this.editor.on('selection-change', () => this.handleSelection());
       this.editor.on('text-change', () => this.handleTextChange());
     },
