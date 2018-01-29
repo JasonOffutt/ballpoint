@@ -126,14 +126,12 @@ export default {
 
 <style lang="scss">
 @import '~style/variables';
+@import '~style/main';
 
 #ballpoint {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
+  margin: 0 auto;
   width: $spacing-full;
-  margin: 120px auto 0;
   background: $light-gray-lighten-2;
 }
 </style>
