@@ -54,7 +54,7 @@ export default {
       return this.$refs.editorContainer.innerHTML;
     },
 
-    handleSelection() {
+    handleSelectionChange() {
       const hasFocus = this.editor.hasFocus();
       const eventName = hasFocus ? 'editor:focus' : 'editor:blur';
 
@@ -69,7 +69,7 @@ export default {
     initEditor() {
       this.setContent(this.content);
       this.editor = new Quill(this.$refs.editorContainer, { placeholder: this.placeholder });
-      this.editor.on('selection-change', () => this.handleSelection());
+      this.editor.on('selection-change', () => this.handleSelectionChange());
       this.editor.on('text-change', () => this.handleTextChange());
     },
 
