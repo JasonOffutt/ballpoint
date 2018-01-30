@@ -1,5 +1,5 @@
 <template>
-  <div id="baz" class="toolbar" :class="{ active }">
+  <div class="toolbar" :class="{ active }">
     <font-size-select :kind="activeSize" @format:size="handleFormatSize" />
 
     <color-select :color="activeColor" @format:color="handleFormatColor" />
