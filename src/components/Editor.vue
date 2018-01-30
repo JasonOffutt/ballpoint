@@ -39,6 +39,11 @@ export default {
     },
   },
 
+  beforeDestroy() {
+    this.editor.off('selection-change');
+    this.editor.off('text-change');
+  },
+
   mounted() {
     this.initEditor();
   },
