@@ -103,8 +103,13 @@ export default {
     @include blue-outline();
   }
 
-  > div {
+  .ql-container {
     font-size: $font-size-base;
+    min-height: $spacing-quarter;
+
+    .ql-editor {
+      min-height: $spacing-quarter;
+    }
   }
 }
 
