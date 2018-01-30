@@ -92,7 +92,8 @@ export default {
 @import '~style/mixins';
 
 .editor {
-  height: $spacing-quarter;
+  min-height: $spacing-quarter;
+  height: auto;
   border: 1px solid $light-gray;
   border-radius: 4px;
   box-sizing: border-box;
