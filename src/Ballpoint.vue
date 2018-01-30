@@ -1,5 +1,5 @@
 <template>
-  <div id="ballpoint">
+  <div id="app">
     <toolbar
       :active="hasActiveEditor"
       :active-editor="activeEditor"
@@ -51,7 +51,7 @@ export default {
         {
           id: 'bar',
           content: `
-<h2>Things I like:</h2>
+<p><span class="ql-size-large">Things I like:</span></p>
 <ol>
   <li>Helping small businesses succeed</li>
   <li>Vue + Vuex</li>
@@ -128,7 +128,7 @@ export default {
 @import '~style/variables';
 @import '~style/main';
 
-#ballpoint {
+#app {
   color: $slate;
   margin: 0 auto;
   width: $spacing-full;
