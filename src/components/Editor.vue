@@ -10,6 +10,7 @@
 
 <script>
 import Quill from 'quill';
+import { normalizeHtml } from '../shared/util/html';
 import 'quill/dist/quill.core.css';
 
 export default {
@@ -50,13 +51,7 @@ export default {
 
   methods: {
     getContent() {
-      // TODO: There might need to be some normalization done when pulling the
-      // HTML out of this component, as Quill uses special classes to achieve
-      // formatting (e.g. `ql-size-large` for formatting font sizes). Will
-      // need to account for that when exporting the content for use in
-      // an email. Alternatively, it might be worth considering writing a
-      // module to parse Quill's "Delta" object model, accessed via `getContent()`.
-      return this.$refs.editorContainer.innerHTML;
+      return normalizeEditorHtml(this.$refs.editorContainer.innerHTML);
     },
 
     handleSelectionChange() {
