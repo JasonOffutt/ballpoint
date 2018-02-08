@@ -1,6 +1,7 @@
 {
-  "name": "@JasonOffutt/ballpoint",
+  "name": "@jasonoffutt/ballpoint",
   "version": "1.0.0",
+  "main": "dist/ballpoint.js",
   "description": "Custom rich text editor using vue and quill",
   "author": "JasonOffutt <jason.offutt@gmail.com>",
   "private": true,
