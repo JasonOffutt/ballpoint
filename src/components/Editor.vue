@@ -10,8 +10,9 @@
 
 <script>
 import Quill from 'quill';
-import { normalizeHtml } from '../shared/util/html';
 import 'quill/dist/quill.core.css';
+
+import { normalizeHtml } from '../shared/util/quill';
 
 export default {
   name: 'Editor',
@@ -51,7 +52,7 @@ export default {
 
   methods: {
     getContent() {
-      return normalizeEditorHtml(this.$refs.editorContainer.innerHTML);
+      return normalizeHtml(this.$refs.editorContainer.innerHTML);
     },
 
     handleSelectionChange() {
@@ -63,7 +64,7 @@ export default {
     },
 
     handleTextChange() {
-      this.$emit('editor:input');
+      this.$emit('editor:input', this.getContent());
     },
 
     initEditor() {

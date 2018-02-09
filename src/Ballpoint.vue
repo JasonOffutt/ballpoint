@@ -109,7 +109,7 @@ export default {
       this.editorFormats = this.getFormats();
     },
 
-    updateSelection() {
+    updateSelection(content) {
       if (!this.hasEditor()) {
         return;
       }
