@@ -25,7 +25,7 @@ import { Component, Vue } from 'vue-property-decorator';
 
 import QuillEditor from '@/shared/interfaces/QuillEditor';
 import Editor from '@/components/Editor.vue';
-import Toolbar from '@/components/Toolbar.vue';
+import Toolbar from '@/components/Toolbar';
 import QuillSelection from '@/shared/interfaces/QuillSelection';
 
 interface QuillContainer {
@@ -72,19 +72,19 @@ export default class App extends Vue {
     return this.activeEditor != null;
   }
 
-  getFormats(): object {
+  public getFormats(): object {
     return this.activeEditor.quill.getFormat();
   }
 
-  getSelection(): QuillSelection {
+  public getSelection(): QuillSelection {
     return this.activeEditor.quill.getSelection();
   }
 
-  hasEditor(): boolean {
+  public hasEditor(): boolean {
     return this.activeEditor != null;
   }
 
-  insertText(value): void {
+  public insertText(value): void {
     if (!this.hasEditor()) {
       return;
     }
@@ -92,7 +92,7 @@ export default class App extends Vue {
     this.activeEditor.quill.insertText(this.editorSelection.index, ` ${value}`);
   }
 
-  resetEditor(editor): void {
+  public resetEditor(editor): void {
     this.updateSelection(null);
 
     if (editor.id === this.activeEditor.id) {
@@ -101,17 +101,17 @@ export default class App extends Vue {
     }
   }
 
-  setEditor(editor): void {
+  public setEditor(editor): void {
     this.activeEditor = editor;
     this.editorSelection = this.getSelection();
     this.editorFormats = this.getFormats();
   }
 
-  updateFormats(): void {
+  public updateFormats(): void {
     this.editorFormats = this.getFormats();
   }
 
-  updateSelection(content): void {
+  public updateSelection(content): void {
     if (!this.hasEditor()) {
       return;
     }

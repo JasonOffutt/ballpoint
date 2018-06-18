@@ -95,8 +95,8 @@ export default {
 </script>
 
 <style lang="scss">
-@import '~style/variables';
-@import '~style/mixins';
+@import 'style/variables';
+@import 'style/mixins';
 
 .alignment-select {
   .alignment-button {

@@ -107,8 +107,8 @@ export default {
 </script>
 
 <style lang="scss">
-@import '~style/mixins';
-@import '~style/variables';
+@import 'style/mixins';
+@import 'style/variables';
 
 .font-size-select {
   .font-size-button {

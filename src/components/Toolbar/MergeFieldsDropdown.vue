@@ -29,37 +29,6 @@
 </template>
 
 <script>
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
 import { mapGetters } from 'vuex';
 
 export default {
@@ -111,7 +80,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import '~style/mixins';
+@import 'style/mixins';
 
 .merge-fields-dropdown {
   @include list();

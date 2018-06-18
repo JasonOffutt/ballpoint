@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import menu from '../../mixins/menu';
+import menu from '@/mixins/menu';
 import colors from '../../../public/colors.json';
 
 const defaultColor = '#000000';
@@ -66,8 +66,8 @@ export default {
 </script>
 
 <style lang="scss">
-@import '~style/mixins';
-@import '~style/variables';
+@import 'style/mixins';
+@import 'style/variables';
 
 .color-select {
   .color-button {

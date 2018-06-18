@@ -45,7 +45,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import '~style/mixins';
+@import 'style/mixins';
 
 .merge-field-select {
   .merge-fields-button {

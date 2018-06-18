@@ -34,7 +34,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import '~style/mixins';
+@import 'style/mixins';
 
 .format-button {
   @include button();

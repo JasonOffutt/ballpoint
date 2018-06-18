@@ -35,12 +35,12 @@
 </template>
 
 <script>
-import AlignmentSelect from './AlignmentSelect';
-import ColorSelect from './ColorSelect';
-import FontSizeSelect from './FontSizeSelect';
-import FormatButton from './FormatButton';
-import ListButton from './ListButton';
-import MergeFieldSelect from './MergeFieldSelect';
+import AlignmentSelect from '@/components/Toolbar/AlignmentSelect.vue';
+import ColorSelect from '@/components/Toolbar/ColorSelect.vue';
+import FontSizeSelect from '@/components/Toolbar/FontSizeSelect.vue';
+import FormatButton from '@/components/Toolbar/FormatButton.vue';
+import ListButton from '@/components/Toolbar/ListButton.vue';
+import MergeFieldSelect from '@/components/Toolbar/MergeFieldSelect.vue';
 
 export default {
   name: 'Toolbar',
@@ -144,7 +144,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import '~style/variables';
+@import 'style/variables';
 
 .toolbar {
   height: $spacing-margin * 2;

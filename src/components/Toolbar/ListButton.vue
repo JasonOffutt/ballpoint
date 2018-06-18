@@ -35,7 +35,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import '~style/mixins';
+@import 'style/mixins';
 
 .list-button {
   @include button();
