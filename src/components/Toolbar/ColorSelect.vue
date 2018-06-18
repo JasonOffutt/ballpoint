@@ -24,7 +24,7 @@
 
 <script>
 import menu from '../../mixins/menu';
-import colors from '../../../static/colors.json';
+import colors from '../../../public/colors.json';
 
 const defaultColor = '#000000';
 
@@ -46,7 +46,7 @@ export default {
         return defaultColor;
       }
 
-      return this.colors.find(color => color.toLowerCase() === this.color.toLowerCase());
+      return this.colors.find((color) => color.toLowerCase() === this.color.toLowerCase());
     },
   },
 

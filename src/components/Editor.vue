@@ -8,84 +8,77 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { Component, Prop, Vue } from 'vue-property-decorator';
 import Quill from 'quill';
 import 'quill/dist/quill.core.css';
 
-import { normalizeHtml } from '../shared/util/quill';
+import QuillEditor from '@/shared/interfaces/QuillEditor';
+import { normalizeHtml } from '@/shared/util/quill';
 
-export default {
+@Component({
   name: 'Editor',
+})
+export default class Editor extends Vue {
+  @Prop({ default: '' })
+  public id: string;
 
-  data() {
-    return {
-      editor: null,
-      hasFocus: false,
-    };
-  },
+  @Prop({ default: '' })
+  public content: string;
 
-  props: {
-    id: {
-      type: String,
-      default: '',
-    },
+  @Prop({ default: '' })
+  public placeholder: string;
 
-    content: {
-      type: String,
-      default: '',
-    },
+  public $refs: {
+    editorContainer: HTMLDivElement,
+  };
 
-    placeholder: {
-      type: String,
-      default: '',
-    },
-  },
+  private editor: QuillEditor = null;
+  private hasFocus: boolean = false;
 
-  beforeDestroy() {
+  public getContent(): string {
+    return normalizeHtml(this.$refs.editorContainer.innerHTML);
+  }
+
+  public setContent(content: string): void {
+    if (content) {
+      this.$refs.editorContainer.innerHTML = content;
+    }
+  }
+
+  protected beforeDestroy() {
     this.editor.off('selection-change');
     this.editor.off('text-change');
-  },
+  }
 
-  mounted() {
+  protected mounted() {
     this.initEditor();
-  },
+  }
 
-  methods: {
-    getContent() {
-      return normalizeHtml(this.$refs.editorContainer.innerHTML);
-    },
+  private handleSelectionChange(): void {
+    const hasFocus = this.editor.hasFocus();
+    const eventName = hasFocus ? 'editor:focus' : 'editor:blur';
 
-    handleSelectionChange() {
-      const hasFocus = this.editor.hasFocus();
-      const eventName = hasFocus ? 'editor:focus' : 'editor:blur';
+    this.hasFocus = hasFocus;
+    this.$emit(eventName, { id: this.id, quill: this.editor });
+  }
 
-      this.hasFocus = hasFocus;
-      this.$emit(eventName, { id: this.id, quill: this.editor });
-    },
+  private handleTextChange(): void {
+    this.$emit('editor:input', this.getContent());
+  }
 
-    handleTextChange() {
-      this.$emit('editor:input', this.getContent());
-    },
-
-    initEditor() {
-      this.setContent(this.content);
-      this.editor = new Quill(this.$refs.editorContainer, { placeholder: this.placeholder });
-      this.editor.on('selection-change', () => this.handleSelectionChange());
-      this.editor.on('text-change', () => this.handleTextChange());
-    },
-
-    setContent(content) {
-      if (content) {
-        this.$refs.editorContainer.innerHTML = content;
-      }
-    },
-  },
-};
+  private initEditor(): void {
+    this.setContent(this.content);
+    this.editor = new Quill(this.$refs.editorContainer, { placeholder: this.placeholder });
+    this.editor.on('selection-change', () => this.handleSelectionChange());
+    this.editor.on('text-change', () => this.handleTextChange());
+  }
+}
 </script>
 
 <style lang="scss">
-@import '~style/variables';
-@import '~style/mixins';
+@import 'style/variables';
+@import 'style/mixins';
 
 .editor {
   min-height: $spacing-quarter;

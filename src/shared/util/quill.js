@@ -1,4 +1,4 @@
-import colors from '../../../static/colors.json';
+import colors from '../../../public/colors.json';
 
 const FONT_SIZE_HUGE = 'ql-size-huge';
 const FONT_SIZE_LARGE = 'ql-size-large';

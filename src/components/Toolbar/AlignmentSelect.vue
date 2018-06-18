@@ -25,6 +25,33 @@
 </template>
 
 <script>
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 import menu from '../../mixins/menu';
 
 const defaultKind = { icon: 'fa-align-left', label: 'Left', value: '' };
@@ -43,7 +70,7 @@ export default {
 
   computed: {
     activeKind() {
-      return this.kinds.find(kind => kind.value === this.kind);
+      return this.kinds.find((kind) => kind.value === this.kind);
     },
   },
 

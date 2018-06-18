@@ -29,6 +29,37 @@
 </template>
 
 <script>
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 import { mapGetters } from 'vuex';
 
 export default {
@@ -43,7 +74,7 @@ export default {
   props: {
     hover: {
       type: Function,
-      default: x => x,
+      default: (x) => x,
     },
 
     visible: {
